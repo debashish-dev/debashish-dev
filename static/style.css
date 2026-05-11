@@ -1,0 +1,15 @@
+body {
+  font-family: serif;
+  max-width: 42rem;
+  margin: 1rem auto;
+  padding: 0 1rem;
+  line-height: 1.5;
+}
+
+input, button {
+  font-size: 1rem;
+}
+
+.error {
+  color: #8b0000;
+}

@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="8">
+  <title>Chat {{ code }}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main>
+    <h1>Room {{ code }}</h1>
+    <p>Role: {{ role }} | Auto refresh every 8 seconds.</p>
+
+    <form method="post">
+      <label for="message">Message:</label>
+      <input id="message" name="message" maxlength="300" required>
+      <button type="submit">Send</button>
+    </form>
+
+    <form method="post" action="{{ url_for('leave') }}">
+      <button type="submit">Leave session</button>
+    </form>
+
+    <hr>
+
+    {% if messages %}
+      <ul>
+      {% for m in messages %}
+        <li><strong>{{ m.author }}</strong> [{{ m.time }}]: {{ m.text }}</li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      <p>No messages yet.</p>
+    {% endif %}
+  </main>
+</body>
+</html>

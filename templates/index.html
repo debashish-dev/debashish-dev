@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>E-Reader Pair Chat</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main>
+    <h1>E-Reader Pair Chat</h1>
+    <p>Private text-only chat for simple browsers.</p>
+
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if active_code %}
+    <p>Current session: <a href="{{ url_for('chat', code=active_code) }}">{{ active_code }}</a> ({{ role }})</p>
+    {% endif %}
+
+    <form method="post" action="{{ url_for('create') }}">
+      <button type="submit">Create pairing code</button>
+    </form>
+
+    <hr>
+
+    <form method="post" action="{{ url_for('join') }}">
+      <label for="code">Join with code:</label>
+      <input id="code" name="code" maxlength="6" required>
+      <button type="submit">Join</button>
+    </form>
+  </main>
+</body>
+</html>
